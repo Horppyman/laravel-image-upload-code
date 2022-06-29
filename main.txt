@@ -1,0 +1,11 @@
+LARAVEL UPLOAD IMAGE
+
+$incoming_image = $request->file('incoming_image');
+$generate_unique_name = hexdec(uniqid());
+$get_image_extension = strtolower($incoming_image->getClientOriginalExtension());
+$new_image_name = $generate_unique_name.'.'.$get_image_extension;
+$upload_location = 'pathFromPublicFolder';
+$image_location = $upload_location.$new_image_name;
+$incoming_image->move($upload_location,$new_image_name);
+
+// Do database insertion
